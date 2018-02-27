@@ -112,6 +112,11 @@ typedef NS_OPTIONS(NSInteger, MASAttribute) {
  */
 @property (nonatomic, assign) BOOL updateExisting;
 
+
+#if TARGET_OS_MAC && !(TARGET_OS_IPHONE || TARGET_OS_TV)
+@property (nonatomic, assign) BOOL animatorExisting;
+#endif
+
 /**
  *  Whether or not to remove existing constraints prior to installing
  */

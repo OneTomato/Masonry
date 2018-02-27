@@ -42,6 +42,9 @@
     NSArray *constraints = self.constraints.copy;
     for (MASConstraint *constraint in constraints) {
         constraint.updateExisting = self.updateExisting;
+#if TARGET_OS_MAC && !(TARGET_OS_IPHONE || TARGET_OS_TV)
+        constraint.animatorExisting = self.animatorExisting;
+#endif
         [constraint install];
     }
     [self.constraints removeAllObjects];

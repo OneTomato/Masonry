@@ -18,6 +18,10 @@
  */
 @property (nonatomic, assign) BOOL updateExisting;
 
+#if TARGET_OS_MAC && !(TARGET_OS_IPHONE || TARGET_OS_TV)
+@property (nonatomic, assign) BOOL animatorExisting;
+#endif
+
 /**
  *	Usually MASConstraintMaker but could be a parent MASConstraint
  */

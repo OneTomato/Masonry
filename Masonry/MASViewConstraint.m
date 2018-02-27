@@ -360,7 +360,18 @@ static char kInstalledConstraintsKey;
     }
     if (existingConstraint) {
         // just update the constant
+#if TARGET_OS_MAC && !(TARGET_OS_IPHONE || TARGET_OS_TV)
+        if (self.animatorExisting)
+        {
+            existingConstraint.animator.constant = layoutConstraint.constant;
+        }
+        else
+        {
+            existingConstraint.constant = layoutConstraint.constant;
+        }
+#else
         existingConstraint.constant = layoutConstraint.constant;
+#endif
         self.layoutConstraint = existingConstraint;
     } else {
         [self.installedView addConstraint:layoutConstraint];

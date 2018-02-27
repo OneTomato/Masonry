@@ -170,6 +170,9 @@
 - (void)install {
     for (MASConstraint *constraint in self.childConstraints) {
         constraint.updateExisting = self.updateExisting;
+#if TARGET_OS_MAC && !(TARGET_OS_IPHONE || TARGET_OS_TV)
+        constraint.animatorExisting = self.animatorExisting;
+#endif
         [constraint install];
     }
 }
